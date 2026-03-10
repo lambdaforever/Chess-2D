@@ -25,10 +25,23 @@ int main() {
     std::vector<std::vector<ChessPiece*>> board(8, std::vector<ChessPiece*>(8, nullptr));
 
     // Place initial pieces (simplified, only pawns for brevity)
-    for (int i = 0; i < 8; ++i) {
-        board[1][i] = new ChessPiece(pieceTexture, false, "pawn");
-        board[6][i] = new ChessPiece(pieceTexture, true, "pawn");
-    }
+//    for (int i = 0; i < 8; ++i) {
+//        board[1][i] = new ChessPiece(pieceTexture, false, "pawn");
+//        board[6][i] = new ChessPiece(pieceTexture, true, "pawn");
+//    }
+    std::vector<std::pair<int,int>> star = {
+    {3,0}, {5,0},
+    {4,1},
+    {2,2}, {3,2}, {4,2}, {5,2}, {6,2},
+    {4,3},
+    {3,4}, {5,4}
+};
+
+for (auto& pos : star) {
+    int x = pos.first;
+    int y = pos.second;
+    board[x][y] = new ChessPiece(pieceTexture, true, "pawn");
+} //figures are placed in the shape of a star
     // Add more pieces as needed...
 
     while (window.isOpen()) {
